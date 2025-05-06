@@ -1,6 +1,5 @@
-package estacio.br;
+package estacio.br.model;
 
-import estacio.br.model.Usuario;
 import estacio.br.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -9,10 +8,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
+public class UsuarioDAO {
+    public List<Usuario> listar() {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM usuarios";
 
@@ -27,10 +24,10 @@ public class Main {
                 u.setNome(rs.getString("nome"));
                 u.setEmail(rs.getString("email"));
                 lista.add(u);
-                System.out.println("id: "+u.getId()+" email: "+u.getEmail());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return lista;
     }
 }
