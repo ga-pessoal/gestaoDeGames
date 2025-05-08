@@ -11,11 +11,17 @@ public class UsuarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        UsuarioDAO dao = new UsuarioDAO();
-        List<Usuario> lista = dao.listar();
+        String action = request.getParameter("action");
 
-        request.setAttribute("usuarios", lista);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/usuarios.jsp");
-        dispatcher.forward(request, response);
+        if ("cadastro".equals(action)) {
+            // Exibe o formulário de cadastro
+            request.getRequestDispatcher("/jsp/cadastroUsuario.jsp").forward(request, response);
+        } else {
+            // Lista usuários
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> lista = dao.listar();
+            request.setAttribute("usuarios", lista);
+            request.getRequestDispatcher("/jsp/usuarios.jsp").forward(request, response);
+        }
     }
 }

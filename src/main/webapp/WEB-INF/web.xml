@@ -3,15 +3,39 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                              https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <!--Login-->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>estacio.br.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
 
+    <!--Home-->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>estacio.br.controller.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <!--Usuario-->
     <servlet>
         <servlet-name>UsuarioServlet</servlet-name>
         <servlet-class>estacio.br.controller.UsuarioServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>UsuarioServlet</servlet-name>
         <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
+
+    <!--Tela Inicial-->
+    <welcome-file-list>
+        <welcome-file>jsp/login.jsp</welcome-file>
+    </welcome-file-list>
 
 </web-app>
