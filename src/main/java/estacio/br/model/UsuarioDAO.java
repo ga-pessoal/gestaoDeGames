@@ -19,10 +19,7 @@ public class UsuarioDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Usuario u = new Usuario();
-                u.setId(rs.getInt("id"));
-                u.setNome(rs.getString("nome"));
-                u.setEmail(rs.getString("email"));
+                Usuario u = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("email"));
                 lista.add(u);
             }
         } catch (Exception e) {
