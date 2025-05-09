@@ -41,3 +41,6 @@ ALTER TABLE `nota_games` ADD CONSTRAINT `nota_games_fk2` FOREIGN KEY (`id_game`)
 
 ALTER TABLE `nota_games` ADD CONSTRAINT `nota_games_fk3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios`(`id`);
 
+INSERT INTO tipo_usuario (titulo) VALUES
+('Administrador'),
+('Avaliador');
