@@ -1,3 +1,7 @@
+CREATE DATABASE gestao_de_games;
+
+USE gestao_de_games;
+
 CREATE TABLE IF NOT EXISTS `usuarios` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`nome` varchar(100) NOT NULL,
