@@ -1,5 +1,6 @@
 package estacio.br.controller;
 
+import estacio.br.dao.UsuarioDAO;
 import estacio.br.model.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
