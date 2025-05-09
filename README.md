@@ -20,7 +20,11 @@ startup.bat
 ```
 
 ## Build
-Na pasta raiz do projeto, para fazer a build do mesmo rode o comando:
+Na pasta raiz do projeto, instale as dependências do projeto rode o comando:
+``` bash
+mvn clean install
+```
+Depois de instalar as dependências, para fazer a build do mesmo rode o comando:
 ``` bash
 mvn clean package
 ```
