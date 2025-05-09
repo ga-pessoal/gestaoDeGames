@@ -16,12 +16,14 @@ public class UsuarioServlet extends HttpServlet {
 
         if ("cadastro".equals(action)) {
             // Exibe o formulário de cadastro
+            request.setAttribute("pageTitle", "Cadastro de usuário");
             request.getRequestDispatcher("/jsp/cadastroUsuario.jsp").forward(request, response);
         } else {
             // Lista usuários
             UsuarioDAO dao = new UsuarioDAO();
             List<Usuario> lista = dao.listar();
             request.setAttribute("usuarios", lista);
+            request.setAttribute("pageTitle", "Usuários");
             request.getRequestDispatcher("/jsp/usuarios.jsp").forward(request, response);
         }
     }

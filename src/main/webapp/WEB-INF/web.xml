@@ -3,6 +3,11 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                              https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <!--Tela Inicial-->
+    <welcome-file-list>
+        <welcome-file>jsp/login.jsp</welcome-file>
+    </welcome-file-list>
+
     <!--Login-->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -33,9 +38,25 @@
         <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
 
-    <!--Tela Inicial-->
-    <welcome-file-list>
-        <welcome-file>jsp/login.jsp</welcome-file>
-    </welcome-file-list>
+    <!--Genero-->
+    <servlet>
+        <servlet-name>GenerosServlet</servlet-name>
+        <servlet-class>estacio.br.controller.GenerosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenerosServlet</servlet-name>
+        <url-pattern>/generos</url-pattern>
+    </servlet-mapping>
+
+    <!--Nota-->
+    <servlet>
+        <servlet-name>NotasServlet</servlet-name>
+        <servlet-class>estacio.br.controller.NotasServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NotasServlet</servlet-name>
+        <url-pattern>/notas</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

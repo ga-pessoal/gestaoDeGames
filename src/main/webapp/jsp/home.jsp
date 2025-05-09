@@ -1,9 +1,8 @@
+<%-- home.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
-    <h2>Home</h2>
-</body>
-</html>
+<%@ include file="includes/header.jsp" %>
+
+<h1>Bem-vindo!</h1>
+
+<%@ include file="includes/footer.jsp" %>
+

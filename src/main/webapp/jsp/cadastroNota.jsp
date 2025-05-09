@@ -1,7 +1,7 @@
-<%-- cadastroUsuario.jsp --%>
+<%-- cadastroNota.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="includes/header.jsp" %>
 
-<h1>Cadastro de usuário</h1>
+<h1>Cadastro de notas</h1>
 
 <%@ include file="includes/footer.jsp" %>
