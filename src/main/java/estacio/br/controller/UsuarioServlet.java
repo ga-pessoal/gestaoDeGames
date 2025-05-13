@@ -27,4 +27,12 @@ public class UsuarioServlet extends HttpServlet {
             request.getRequestDispatcher("/jsp/usuarios.jsp").forward(request, response);
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+
+
+    }
 }

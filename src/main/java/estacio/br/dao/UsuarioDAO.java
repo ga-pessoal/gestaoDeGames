@@ -36,4 +36,8 @@ public class UsuarioDAO {
         }
         return lista;
     }
+
+    public void Criar(Usuario usuario) {
+
+    }
 }
