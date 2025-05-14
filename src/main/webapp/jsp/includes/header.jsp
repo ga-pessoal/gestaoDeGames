@@ -5,7 +5,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title><c:out value="${pageTitle}" default="Minha Aplicação" /></title>
+    <title>${pageTitle != null ? pageTitle : "Games Rate"}</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
