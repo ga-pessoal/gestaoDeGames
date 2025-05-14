@@ -38,6 +38,16 @@
         <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
 
+    <!--Games-->
+    <servlet>
+        <servlet-name>GamesServlet</servlet-name>
+        <servlet-class>estacio.br.controller.GamesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GamesServlet</servlet-name>
+        <url-pattern>/games</url-pattern>
+    </servlet-mapping>
+
     <!--Genero-->
     <servlet>
         <servlet-name>GenerosServlet</servlet-name>

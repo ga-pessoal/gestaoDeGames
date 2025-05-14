@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 CREATE TABLE IF NOT EXISTS `games` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`titulo` varchar(150) NOT NULL,
-	`url_image` varchar(255) NOT NULL,
+	`nome_imagem` varchar(255) NOT NULL,
 	`id_genero` int NOT NULL,
 	PRIMARY KEY (`id`)
 );
