@@ -36,4 +36,21 @@ public class UsuarioDAO {
         }
         return lista;
     }
+
+    public void inserir(Usuario usuario) {
+        String sql = "INSERT into usuarios (nome, email, senha, id_tipo_usuario) VALUES (?, ?, ?, 1) ";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getSenha());
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
