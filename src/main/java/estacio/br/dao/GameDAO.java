@@ -1,15 +1,9 @@
 package estacio.br.dao;
 
 import estacio.br.model.Game;
-
-import estacio.br.model.Usuario;
 import estacio.br.util.ConnectionFactory;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 public class GameDAO {
     private Connection conn;
@@ -40,7 +34,6 @@ public class GameDAO {
             e.printStackTrace();
         }
         return lista;
-
     }
 
     public void inserir(Game game) {
@@ -59,5 +52,76 @@ public class GameDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Game> listarGamesComNotas() {
+        List<Game> games = new ArrayList<>();
+
+        String sql = "SELECT g.id, g.titulo, ge.titulo AS genero, g.nome_imagem, n.nota " +
+                "FROM games g " +
+                "LEFT JOIN genero ge ON g.id_genero = ge.id " +
+                "LEFT JOIN nota_games n ON g.id = n.id_game";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Game game = new Game();
+                game.setId(rs.getInt("id"));
+                game.setTitulo(rs.getString("titulo"));
+                game.setGenero(rs.getString("genero"));
+                game.setNomeImagem(rs.getString("nome_imagem"));
+
+                int nota = rs.getInt("nota");
+                if (rs.wasNull()) {
+                    game.setNota(0);
+                } else {
+                    game.setNota(nota);
+                }
+
+                games.add(game);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return games;
+    }
+
+    public List<Game> listarGamesComMediaNotas() {
+        List<Game> games = new ArrayList<>();
+
+        String sql = "SELECT g.id, g.titulo, ge.titulo AS genero, g.nome_imagem, AVG(n.nota) AS nota " +
+                "FROM games g " +
+                "LEFT JOIN genero ge ON g.id_genero = ge.id " +
+                "LEFT JOIN nota_games n ON g.id = n.id_game " +
+                "GROUP BY g.id, g.titulo, g.id_genero";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Game game = new Game();
+                game.setId(rs.getInt("id"));
+                game.setTitulo(rs.getString("titulo"));
+                game.setGenero(rs.getString("genero"));
+                game.setNomeImagem(rs.getString("nome_imagem"));
+
+                double media = rs.getDouble("nota");
+                if (rs.wasNull()) {
+                    game.setNota(0);
+                } else {
+                    game.setNota(media);
+                }
+
+                games.add(game);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return games;
     }
 }
