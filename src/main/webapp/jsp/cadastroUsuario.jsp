@@ -2,25 +2,43 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="includes/header.jsp" %>
 
-<h1>Cadastro de usuário</h1>
+<!-- Formulário de Cadastro de Usuário -->
+<form action="${pageContext.request.contextPath}/usuarios" method="post" class="form-container mt-5">
+    <h2 class="mb-4 text-center">Cadastro de Usuário</h2>
 
-<form action="${pageContext.request.contextPath}/usuarios" method="post">
-    <label for="nome">Nome:</label><br>
-    <input type="text" id="nome" name="nome" required><br><br>
+    <!-- Mensagem de erro -->
+    <c:if test="${not empty mensagem}">
+        <div style="display: block;" class="erro-msg">
+            ${mensagem}
+        </div>
+    </c:if>
 
-    <label for="email">Emil:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+    <!-- Nome -->
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" required>
+    </div>
 
-   <label for="senha">Senha:</label><br>
-   <input type="password" id="senha" name="senha" required><br><br>
+    <!-- Email -->
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
 
-   <label for="confirmar_senha">Repetir senha:</label><br>
-   <input type="password" id="confirmar_senha" name="confirmar_senha" required><br><br>
+    <!-- Senha -->
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" name="senha" required>
+    </div>
 
-   <input type="submit" value"Cadastrar usuario">
+    <!-- Senha -->
+    <div class="mb-3">
+        <label for="senha" class="form-label">Confirmar Senha</label>
+        <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" required>
+    </div>
 
+    <!-- Botão -->
+    <button type="submit" class="btn btn-enviar w-100 mt-2">Cadastrar</button>
 </form>
-
-<p>${mensagem != null ? mensagem : ""}</p>
 
 <%@ include file="includes/footer.jsp" %>
