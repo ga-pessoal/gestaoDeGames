@@ -2,24 +2,30 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="includes/header.jsp" %>
 
-<h1>Bem-vindo!</h1>
+<div class="container py-4">
+    <!-- Saudação -->
+    <h1 class="titulo-home">Olá, Gabriel!</h1>
 
-<table>
-    <tr>
-        <th>Titulo</th>
-        <th>genero</th>
-        <th>Nota</th>
-    </tr>
-    <c:forEach var="game" items="${games}">
-        <tr>
-            <td>${game.titulo}</td>
-            <td>${game.genero}</td>
-            <td>
-                ${game.nota != 0 ? game.nota : 'Sem nota'}
-            </td>
-        </tr>
-    </c:forEach>
-</table>
+    <!-- Botão cadastrar nota -->
+    <div class="text-center mb-4">
+        <a href="/cadastrar-nota" class="btn btn-cadastrar">Cadastrar Nota</a>
+    </div>
+
+    <!-- Lista de Cards de Jogos -->
+    <div class="row g-4">
+        <c:forEach var="game" items="${games}">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card-jogo">
+                    <img src="${pageContext.request.contextPath}/imgs/download.jpeg" alt="Capa do jogo">
+                    <div class="card-body">
+                        <h5 class="card-title">${game.titulo}</h5>
+                        <p class="card-text">Nota: ${game.nota != 0 ? game.nota : 'Sem nota'}</p>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 
 <%@ include file="includes/footer.jsp" %>
 
