@@ -8,7 +8,7 @@
 
     <!-- Botão cadastrar nota -->
     <div class="text-center mb-4">
-        <a href="/cadastrar-nota" class="btn btn-cadastrar">Cadastrar Nota</a>
+        <a href="${pageContext.request.contextPath}/notas?action=cadastro" class="btn btn-cadastrar">Cadastrar Nota</a>
     </div>
 
     <!-- Lista de Cards de Jogos -->

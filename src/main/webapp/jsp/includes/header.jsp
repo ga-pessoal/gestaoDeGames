@@ -15,15 +15,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
-
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" ></script>
+
 </head>
 <body>
     <!-- Navbar -->
     <c:if test="${!pageTitle.contains('Login')}">
         <nav class="navbar navbar-expand-lg navbar-futurista fixed-top">
             <div class="container-fluid d-flex justify-content-between">
-                <a class="navbar-brand" href="#">GameRate</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/home">GameRate</a>
 
                 <div class="dropdown ms-auto">
                     <button class="btn config-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
