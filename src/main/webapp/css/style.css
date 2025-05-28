@@ -1,9 +1,279 @@
-body {
-    padding:0;
-    margin:0;
-    font-family: sans-serif;
+:root {
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --gray-color: #e5e5e5;
+  --dark-blue-color: #14213d;
+  --orange-color: #fca311;
 }
 
-h1 {
-    color: red;
+body {
+  background: linear-gradient(145deg, #1e1e2f, #282841);
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 80px; /* espaço para o navbar fixo */
+  color: #fff;
+}
+
+/* Estilo personalizado para o navbar futurista */
+.navbar-futurista {
+  background: linear-gradient(145deg, #1e1e2f, #282841);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-futurista .navbar-brand {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.navbar-futurista .navbar-brand:hover {
+  color: #90ee90;
+}
+
+.dropdown-menu {
+  background-color: #2d2d4a;
+  border: none;
+}
+
+.dropdown-item {
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #3e3e60;
+  color: #90ee90;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.config-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.config-btn:hover {
+  color: #90ee90;
+}
+
+/*Game Card*/
+.titulo-home {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #90ee90;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn-cadastrar {
+  background-color: #90ee90;
+  color: #000;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-cadastrar:hover {
+  background-color: #76d176;
+}
+
+.card-jogo {
+  background-color: #2d2d4a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(144, 238, 144, 0.2);
+  color: #fff;
+}
+
+.card-jogo img {
+  object-fit: cover;
+  height: 180px;
+  width: 100%;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-body h5 {
+  color: #90ee90;
+}
+
+@media (max-width: 576px) {
+  .card-jogo img {
+    height: 150px;
+  }
+}
+
+/*Formulários*/
+.form-container {
+  background-color: #1e1e2f;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(144, 238, 144, 0.2);
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form-label {
+  color: #90ee90;
+  font-weight: 500;
+}
+
+.form-control,
+.form-select {
+  background-color: #2d2d4a;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #90ee90;
+  box-shadow: 0 0 0 0.25rem rgba(144, 238, 144, 0.25);
+}
+
+.btn-enviar {
+  background-color: #90ee90;
+  color: #000;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-enviar:hover {
+  background-color: #76d176;
+}
+
+/*Tabela de listagem*/
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  color: #90ee90;
+  margin-bottom: 30px;
+}
+
+.table-dark-custom {
+  --bs-table-color: #fff;
+  --bs-table-bg: #2d2d4a;
+}
+
+.table-dark-custom th {
+  color: #90ee90;
+  border-color: #444;
+}
+
+.table-dark-custom td {
+  border-color: #444;
+}
+
+.btn-editar {
+  background-color: #ffc107;
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn-excluir {
+  background-color: #dc3545;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-editar:hover {
+  background-color: #e0a800;
+}
+
+.btn-excluir:hover {
+  background-color: #c82333;
+}
+
+/*Login*/
+.titulo-principal {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #90ee90;
+  text-shadow: 0 0 7px rgba(144, 238, 144, 0.5);
+  margin-bottom: 30px;
+  margin-top: -100px;
+}
+
+.login-container {
+  background-color: #2d2d4a;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(144, 238, 144, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-label {
+  color: #90ee90;
+}
+
+.btn-login {
+  background-color: #90ee90;
+  color: #000;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn-login:hover {
+  background-color: #76d676;
+}
+
+.link-cadastrar {
+  color: #90ee90;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.link-cadastrar:hover {
+  text-decoration: underline;
+}
+
+.erro-msg {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #90ee90;
+}
+
+/*Modal*/
+.modal-content {
+    background-color: #2d2d4a;
+    color: white;
+    border: 1px solid #444;
+}
+
+.modal-header, .modal-footer {
+    border-color: #444;
+}
+
+.modal-title {
+    color: #90ee90;
+}
+
+.btn-confirmar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-confirmar:hover {
+    background-color: #bd2130;
 }

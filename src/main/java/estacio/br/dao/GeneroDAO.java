@@ -1,6 +1,7 @@
 package estacio.br.dao;
 
 import estacio.br.model.Genero;
+import estacio.br.model.Usuario;
 import estacio.br.util.ConnectionFactory;
 
 import java.sql.*;
@@ -37,7 +38,7 @@ public class GeneroDAO {
     }
 
     public Genero generoPorId(int id){
-        String sql = "SELECT * FROM generos WHERE id = ?";
+        String sql = "SELECT * FROM genero WHERE id = ?";
         Genero g = new Genero();
 
         try {
@@ -63,7 +64,7 @@ public class GeneroDAO {
 
     public boolean editar(Genero genero) throws SQLException {
         int linhasAfetadas = 0;
-        String sql = "UPDATE generos SET titulo = ?, WHERE id = ?";
+        String sql = "UPDATE genero SET titulo = ?, WHERE id = ?";
 
         try{
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -81,7 +82,7 @@ public class GeneroDAO {
 
     public boolean deletar(int id) throws SQLException {
         int linhasAfetadas = 0;
-        String sql = "DELETE FROM generos WHERE id = ?";
+        String sql = "DELETE FROM genero WHERE id = ?";
 
         try{
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -92,5 +93,18 @@ public class GeneroDAO {
         }
 
         return linhasAfetadas > 0;
+    }
+
+    public void inserir(Genero genero) {
+        String sql = "INSERT into genero (titulo) VALUES (?) ";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, genero.getTitulo());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
