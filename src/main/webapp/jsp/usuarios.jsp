@@ -5,6 +5,10 @@
 <div class="container mt-5">
     <h2 class="titulo">Listagem de Usuários</h2>
 
+    <div class="d-flex justify-content-start mb-4">
+        <a href="${pageContext.request.contextPath}/usuarios?action=cadastro" class="btn btn-success fw-bold">Cadastrar Usuário</a>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-dark-custom table-bordered align-middle text-center">
             <thead>
@@ -30,29 +34,5 @@
         </table>
     </div>
 </div>
-
-<!-- Modal de confirmação -->
-<div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" aria-labelledby="confirmarExclusaoModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post" action="${pageContext.request.contextPath}/usuarios?action=excluir">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar Exclusão</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    Tem certeza que deseja excluir este usuário?
-                    <input type="hidden" name="id" id="idToDelete">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-confirmar">Excluir</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
+<%@ include file="includes/modalConfirmacao.jsp" %>
 <%@ include file="includes/footer.jsp" %>

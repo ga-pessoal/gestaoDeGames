@@ -33,14 +33,14 @@
     <!-- Email -->
     <div class="mb-3">
         <label for="email" class="form-label">E-mail</label>
-        <input type="email" class="form-control" id="email" name="email" value="${usuario.email}" required>
+        <input type="email" class="form-control" id="email" name="email" value="${usuario.email}" required autocomplete="off">
     </div>
 
     <c:if test="${empty usuario.id}">
         <!-- Senha -->
         <div class="mb-3">
             <label for="senha" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha" value="${usuario.senha}" required>
+            <input type="password" class="form-control" id="senha" name="senha" value="${usuario.senha}" required autocomplete="new-password">
         </div>
 
         <!-- Confirmar Senha -->
