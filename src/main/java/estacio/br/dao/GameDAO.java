@@ -1,6 +1,7 @@
 package estacio.br.dao;
 
 import estacio.br.model.Game;
+import estacio.br.model.Usuario;
 import estacio.br.util.ConnectionFactory;
 import java.sql.*;
 import java.util.*;
@@ -124,4 +125,83 @@ public class GameDAO {
 
         return games;
     }
+
+    public void inserir(Game game){
+        String sql = "INSERT into games (titulo, id) VALES (?,?)";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, game.getGame());
+            stmt.setString(2,game.getId);
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Game gamesPorId(int id){
+        String sql = "SELECT * FROM games WHERE id = ?";
+        Game g = new Game();
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                g.setId(rs.getInt("id"));
+                g.setTitulo(rs.getString("titulo"));
+
+                stmt.close();
+                conn.close();
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return g;
+    }
+
+    public boolean editar(Game game) throws  SQLException{
+        int linhasAfetadas = 0;
+        String sql = "UPDATE games SET titulo = ? WHERE id = ?";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, game.getTitulo());
+            stmt.setInt(2, game.getId());
+
+            linhasAfetadas = stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return linhasAfetadas > 0;
+    }
+
+    public boolean deletar(int id) throws  SQLException{
+        int linhasAfetadas = 0;
+        String sql = "DELETE FROM games WHERE id = ?";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            linhasAfetadas = stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return linhasAfetadas > 0;
+
+    }
+
 }

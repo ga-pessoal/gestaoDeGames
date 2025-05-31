@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.List;
 
 @MultipartConfig
@@ -42,44 +43,81 @@ public class GamesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
 
-        Part tituloPart = request.getPart("titulo");
-        String titulo = getFormField(tituloPart);
+        if("excluir".equals(action)){
+            int id = Integer.parseInt(request.getParameter("id"));
+            GameDAO gameDAO = new GameDAO();
 
-        Part generoPart = request.getPart("id_genero");
-        int idGenero = Integer.parseInt(getFormField(generoPart));
+            try {
+                gameDAO.deletar(id);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 
-        // Diretório para salvar a imagem
-        String uploadPath = "C:/GamesRate/uploads";
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdirs();
+            List<Game> listar = gameDAO.listar();
+            request.setAttribute("games", listar);
+            request.setAttribute("pageTitle", "Games");
+            request.getRequestDispatcher("/jsp/games.jsp").forward(request, response);
+        } else if ("editar".equals(action)) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String titulo = request.getParameter("titulo");
 
-        Part imagemPart = request.getPart("imagem");
-        String fileName = Paths.get(imagemPart.getSubmittedFileName()).getFileName().toString();
-        String filePath = uploadPath + File.separator + fileName;
+            Game gameObj = new Game();
+            gameObj.setId(id);
+            gameObj.setTitulo(titulo);
 
-        if (!fileName.isEmpty()) {
-            imagemPart.write(filePath);
+            GameDAO  gameDAO = new GameDAO();
+            try{
+                gameDAO.editar(gameObj);
+            }catch (SQLException e){
+                e.printStackTrace();
+
+            }
+            List<Game> lista = gameDAO.listar();
+            request.setAttribute("games", lista);
+            request.setAttribute("pageTitle", "Games");
+            request.getRequestDispatcher("/jsp/games.jsp").forward(request, response);
+        } else {
+            request.setCharacterEncoding("UTF-8");
+
+            Part tituloPart = request.getPart("titulo");
+            String titulo = getFormField(tituloPart);
+
+            Part generoPart = request.getPart("id_genero");
+            int idGenero = Integer.parseInt(getFormField(generoPart));
+
+            // Diretório para salvar a imagem
+            String uploadPath = "C:/GamesRate/uploads";
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) uploadDir.mkdirs();
+
+            Part imagemPart = request.getPart("imagem");
+            String fileName = Paths.get(imagemPart.getSubmittedFileName()).getFileName().toString();
+            String filePath = uploadPath + File.separator + fileName;
+
+            if (!fileName.isEmpty()) {
+                imagemPart.write(filePath);
+            }
+
+            // Cria o objeto Game
+            Game game = new Game();
+            game.setTitulo(titulo);
+            game.setIdGenero(idGenero);
+            game.setNomeImagem(fileName); // apenas o nome, não o caminho completo
+
+            // Salva no banco de dados
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.inserir(game);
+
+            List<Game> lista = gameDAO.listar();
+            request.setAttribute("games", lista);
+            request.setAttribute("pageTitle", "Games");
+            request.getRequestDispatcher("/jsp/games.jsp").forward(request, response);
         }
-
-        // Cria o objeto Game
-        Game game = new Game();
-        game.setTitulo(titulo);
-        game.setIdGenero(idGenero);
-        game.setNomeImagem(fileName); // apenas o nome, não o caminho completo
-
-        // Salva no banco de dados
-        GameDAO gameDAO = new GameDAO();
-        gameDAO.inserir(game);
-
-        // Insere os dados necessários para a página
-        request.setAttribute("mensagem", "Registro criado com sucesso!");
-        request.setAttribute("generos", getGeneros());
-
-        // Redireciona para a lista de games (ou outra página)
-        request.getRequestDispatcher("/jsp/cadastroGame.jsp").forward(request, response);
     }
+
+
 
     public List<Genero> getGeneros() {
         GeneroDAO generoDAO = new GeneroDAO();

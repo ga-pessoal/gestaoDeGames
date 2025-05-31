@@ -1,9 +1,18 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 <!-- Modal de confirmação -->
 <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" aria-labelledby="confirmarExclusaoModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="${pageContext.request.contextPath}/usuarios?action=excluir">
+            <c:choose>
+                <c:when test="${not empty usuarios}">
+                    <form method="post" action="${pageContext.request.contextPath}/usuarios?action=excluir">
+                </c:when>
+                <c:when test="${not empty generos}">
+                    <form method="post" action="${pageContext.request.contextPath}/generos?action=excluir">
+                </c:when>
+            </c:choose>
                 <div class="modal-header">
                     <h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar Exclusão</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
