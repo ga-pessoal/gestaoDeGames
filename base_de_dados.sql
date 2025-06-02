@@ -40,9 +40,8 @@ CREATE TABLE IF NOT EXISTS `genero` (
 );
 
 ALTER TABLE `usuarios` ADD CONSTRAINT `usuarios_fk4` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tipo_usuario`(`id`);
-ALTER TABLE `games` ADD CONSTRAINT `games_fk3` FOREIGN KEY (`id_genero`) REFERENCES `genero`(`id`);
+ALTER TABLE `games` ADD CONSTRAINT `games_fk3` FOREIGN KEY (`id_genero`) REFERENCES `genero`(`id`) ON DELETE CASCADE;
 ALTER TABLE `nota_games` ADD CONSTRAINT `nota_games_fk2` FOREIGN KEY (`id_game`) REFERENCES `games`(`id`) ON DELETE CASCADE;
-
 ALTER TABLE `nota_games` ADD CONSTRAINT `nota_games_fk3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE;
 
 INSERT INTO tipo_usuario (titulo) VALUES
