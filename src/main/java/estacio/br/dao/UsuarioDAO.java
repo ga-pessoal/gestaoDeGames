@@ -32,9 +32,6 @@ public class UsuarioDAO {
                 u.setEmail(rs.getString("email"));
                 lista.add(u);
             }
-
-            stmt.close();
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,9 +49,6 @@ public class UsuarioDAO {
             stmt.setString(3, usuario.getSenha());
 
             stmt.executeUpdate();
-
-            stmt.close();
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,8 +71,6 @@ public class UsuarioDAO {
                 u.setSenha(rs.getString("senha"));
             }
 
-            stmt.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

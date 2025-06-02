@@ -126,26 +126,7 @@ public class GameDAO {
         return games;
     }
 
-    public void inserir(Game game){
-        String sql = "INSERT into games (titulo, id) VALES (?,?)";
-
-        try{
-            PreparedStatement stmt = conn.prepareStatement(sql);
-
-            stmt.setString(1, game.getGame());
-            stmt.setString(2,game.getId);
-
-            stmt.executeUpdate();
-
-            stmt.close();
-            conn.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public Game gamesPorId(int id){
+    public Game gamePorId(int id){
         String sql = "SELECT * FROM games WHERE id = ?";
         Game g = new Game();
 
@@ -158,10 +139,6 @@ public class GameDAO {
             if(rs.next()){
                 g.setId(rs.getInt("id"));
                 g.setTitulo(rs.getString("titulo"));
-
-                stmt.close();
-                conn.close();
-
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -172,13 +149,14 @@ public class GameDAO {
 
     public boolean editar(Game game) throws  SQLException{
         int linhasAfetadas = 0;
-        String sql = "UPDATE games SET titulo = ? WHERE id = ?";
+        String sql = "UPDATE games SET titulo = ?, id_genero = ? WHERE id = ?";
 
         try{
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, game.getTitulo());
-            stmt.setInt(2, game.getId());
+            stmt.setInt(2, game.getIdGenero());
+            stmt.setInt(3, game.getId());
 
             linhasAfetadas = stmt.executeUpdate();
         }catch (SQLException e){

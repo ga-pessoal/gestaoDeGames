@@ -17,7 +17,7 @@
 
     <c:if test="${not empty mensagem}">
         <div style="display: block;" class="erro-msg">
-                ${mensagem}
+            ${mensagem}
         </div>
     </c:if>
 

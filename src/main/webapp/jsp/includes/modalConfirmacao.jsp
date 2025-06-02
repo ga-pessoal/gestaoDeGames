@@ -12,6 +12,9 @@
                 <c:when test="${not empty generos}">
                     <form method="post" action="${pageContext.request.contextPath}/generos?action=excluir">
                 </c:when>
+                <c:when test="${not empty games}">
+                    <form method="post" action="${pageContext.request.contextPath}/games?action=excluir">
+                </c:when>
             </c:choose>
                 <div class="modal-header">
                     <h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar Exclusão</h5>

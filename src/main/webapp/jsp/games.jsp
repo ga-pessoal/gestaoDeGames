@@ -4,7 +4,7 @@
 
 <div class="container mt-5">
     <h2 class="titulo">Listagem de Games</h2>
-<div class="d-flex justify-content-start mb-4">
+    <div class="d-flex justify-content-start mb-4">
         <a href="${pageContext.request.contextPath}/games?action=cadastro" class="btn btn-success fw-bold">Cadastrar Games</a>
     </div>
         <div class="table-responsive">
