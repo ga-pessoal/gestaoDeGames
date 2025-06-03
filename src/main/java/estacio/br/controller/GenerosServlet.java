@@ -106,12 +106,9 @@ public class GenerosServlet extends BaseServlet {
 
     private void cadastrarGenero(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Pega os dados de cadastroGenero.jsp
-        String titulo = request.getParameter("titulo");
-
         // Montar o objeto com os valores das variáveis acima
         Genero generoObj = new Genero();
-        generoObj.setTitulo(parametro(request, titulo));
+        generoObj.setTitulo(parametro(request, "titulo"));
 
         // Inserir os dados na base de dados DAO
         generoDAO.inserir(generoObj);
