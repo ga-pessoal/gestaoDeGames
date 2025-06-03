@@ -51,8 +51,7 @@ public class NotasServlet extends BaseServlet {
     private void listarNotas(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lista Notas
-        request.setAttribute("pageTitle", "Notas");
-        encaminhar("/jsp/home.jsp", request, response);
+        redirecionar(request.getContextPath() + "/home", response);
     }
 
     private void cadastrarNota(HttpServletRequest request, HttpServletResponse response)
@@ -67,8 +66,8 @@ public class NotasServlet extends BaseServlet {
         // Insere os dados na base de dados
         notaDAO.inserir(notaObj);
 
-        // Redireciona para a página de cadastro novamente
-        listarNotas(request, response);
+        // Redireciona para a home
+        redirecionar(request.getContextPath() + "/home", response);
     }
 
     public List<Game> getGames() {

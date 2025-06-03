@@ -15,7 +15,7 @@
     </c:if>
 
     <!-- id do usuário -->
-    <input type="text" id="id_usuario" name="id_usuario" style="display:none" value="1">
+    <input type="text" id="id_usuario" name="id_usuario" style="display:none" value="${usuarioLogado.id}">
 
     <!-- Game -->
     <div class="mb-3">

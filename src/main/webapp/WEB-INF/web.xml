@@ -18,6 +18,16 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <!--Logout-->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>estacio.br.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
     <!--Home-->
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
