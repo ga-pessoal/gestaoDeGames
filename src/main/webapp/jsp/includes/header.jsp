@@ -20,7 +20,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <c:if test="${!pageTitle.contains('Login')}">
+    <c:if test="${not empty usuarioLogado}">
         <nav class="navbar navbar-expand-lg navbar-futurista fixed-top">
             <div class="container-fluid d-flex justify-content-between">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/home">GameRate</a>
@@ -31,13 +31,16 @@
                         ⚙️ Configurações
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Minha Conta</a></li>
-                        <li><a class="dropdown-item" href="#">Games</a></li>
-                        <li><a class="dropdown-item" href="#">Usuários</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/usuarios?action=editar&id=${usuarioLogado.id}">Minha Conta</a></li>
+                        <c:if test="${usuarioLogado.id_tipo_usuario == 1}">
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/generos">Generos</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/games">Games</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/usuarios">Usuários</a></li>
+                        </c:if>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Sair</a></li>
                     </ul>
                 </div>
             </div>

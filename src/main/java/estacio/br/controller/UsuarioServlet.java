@@ -121,9 +121,18 @@ public class UsuarioServlet extends BaseServlet {
         Usuario usuario = new Usuario();
         usuario.setNome(parametro(request, "nome"));
         usuario.setEmail(parametro(request, "email"));
+        usuario.setId_tipo_usuario(parametroInt(request, "id_tipo_usuario"));
         usuario.setSenha(senha);
 
         usuarioDAO.inserir(usuario);
-        encaminhar("/jsp/login.jsp", request, response);
+
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("usuarioLogado") != null) {
+            // Usuário está logado, volta para a listagem
+            redirecionar(request.getContextPath() + "/usuarios", response);
+        } else {
+            // Usuário não está logado, redireciona para login
+            redirecionar(request.getContextPath() + "/login", response);
+        }
     }
 }

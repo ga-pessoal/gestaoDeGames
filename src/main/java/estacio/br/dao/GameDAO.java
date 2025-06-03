@@ -55,16 +55,18 @@ public class GameDAO {
         }
     }
 
-    public List<Game> listarGamesComNotas() {
+    public List<Game> listarGamesComNotas(int id_usuario) {
         List<Game> games = new ArrayList<>();
 
-        String sql = "SELECT g.id, g.titulo, ge.titulo AS genero, g.nome_imagem, n.nota " +
+        String sql = "SELECT g.id, g.titulo, ge.titulo AS genero, g.nome_imagem, n.nota, n.id_usuario " +
                 "FROM games g " +
-                "LEFT JOIN genero ge ON g.id_genero = ge.id " +
-                "LEFT JOIN nota_games n ON g.id = n.id_game";
+                "INNER JOIN nota_games n ON g.id = n.id_game AND n.id_usuario = ? " +
+                "LEFT JOIN genero ge ON g.id_genero = ge.id";
 
         try{
             PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id_usuario);
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
