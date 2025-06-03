@@ -37,6 +37,23 @@
     </div>
 
     <c:if test="${empty usuario.id}">
+        <!-- Tipo de Usuário -->
+        <c:choose>
+            <c:when test="${usuarioLogado.id_tipo_usuario == 1}">
+                <div class="mb-3">
+                    <label for="tipo_usuario" class="form-label">Tipo Usuário</label>
+                    <select class="form-select" id="tipo_usuario" name="id_tipo_usuario" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Avaliador</option>
+                    </select>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <input type="text" id="id_tipo_usuario" name="id_tipo_usuario" style="display:none" value="2">
+            </c:otherwise>
+        </c:choose>
+
         <!-- Senha -->
         <div class="mb-3">
             <label for="senha" class="form-label">Senha</label>
@@ -49,22 +66,6 @@
             <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" value="${usuario.senha}" required>
         </div>
     </c:if>
-
-    <c:choose>
-        <c:when test="${usuarioLogado.id_tipo_usuario == 1}">
-            <div class="mb-3">
-                <label for="tipo_usuario" class="form-label">Tipo Usuário</label>
-                <select class="form-select" id="tipo_usuario" name="id_tipo_usuario" required>
-                    <option value="">Selecione o tipo</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Avaliador</option>
-                </select>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <input type="text" id="id_tipo_usuario" name="id_tipo_usuario" style="display:none" value="2">
-        </c:otherwise>
-    </c:choose>
 
     <!-- Botão -->
     <button type="submit" class="btn btn-enviar w-100 mt-2">${usuario.id != null ? "Editar" : "Cadastrar"}</button>
