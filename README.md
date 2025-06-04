@@ -1,3 +1,5 @@
+## Trabalho de Beatriz Schmidt da Silva e Gabriel Costa de Mattos
+
 # Descrição
 Este projeto é uma aplicação web desenvolvida em Java utilizando JSP, Servlets e banco de dados MySQL. Segue o padrão MVC para organização do código.
 
