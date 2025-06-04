@@ -1,38 +1,43 @@
-## Tecnologias utilizadas
-- Java (Servlets e JSP)
-- Apache Tomcat (servidor web)
-- JDBC (conexão com banco de dados)
-- MySQL (banco relacional)
-- IDE: IntelliJ IDEA
-- Maven
+# Descrição
+Este projeto é uma aplicação web desenvolvida em Java utilizando JSP, Servlets e banco de dados MySQL. Segue o padrão MVC para organização do código.
 
-## Toomcat
-Baixe o [Tomcat 10.1+](https://tomcat.apache.org/download-10.cgi)
+## Pré-requisitos
+- JDK 11 ou superior (recomendo JDK 17+)
+- Apache Tomcat 9 ou superior (ou outro servidor servlet compatível)
+- MySQL Server instalado e em execução
+- IDE (IntelliJ)
 
-Extraia em uma pasta, por exemplo: 
-> C:\tomcat-10.1.20
- 
-### Inicie o Toomcat
-No terminal/cmd, vá até a pasta bin do Tomcat e execute:
-No Windows:
-``` bash
-startup.bat
+## Configuração do Banco de Dados
+1. Crie um banco de dados MySQL executando o script do arquivo:
+
+```
+base_de_dados.sql
+``` 
+
+2. Importe o script de criação das tabelas e dados (se disponível):
+
+```bash
+mysql -u seu_usuario -p nome_do_banco < caminho/para/script.sql
 ```
 
-## Build
-Na pasta raiz do projeto, instale as dependências do projeto rode o comando:
-``` bash
-mvn clean install
+3. Atualize o arquivo de configuração do projeto (ex: context.xml, web.xml ou arquivo de propriedades) com os dados do seu banco:
 ```
-Depois de instalar as dependências, para fazer a build do mesmo rode o comando:
-``` bash
-mvn clean package
-```
-Depois mova o arquivo war gerado para a pasta webapp do toomcat utilizando o comando:
-``` bash
-copy .\target\GestaoDeGames.war \apache-tomcat-10.1.40\webapps\
+db.url=jdbc:mysql://localhost:3306/nome_do_banco
+db.user=seu_usuario
+db.password=sua_senha
 ```
 
-## Acessar
-Para acessar o sistema basta usar essa url no navegador
-> http://localhost:8080/MeuProjetoWeb/usuarios
+## Como rodar o projeto
+### Passo 1: Configurar o servidor
+- Copie o projeto para o diretório de deploy do Tomcat (webapps) ou configure sua IDE para executar no servidor configurado.
+
+### Passo 2: Build e deploy
+- Compile o projeto (se estiver usando Maven, rode mvn clean install).
+- Faça o deploy do .war gerado para o Tomcat ou use a funcionalidade de deploy da sua IDE.
+
+### Passo 3: Inicie o servidor
+- Execute o Tomcat.
+- Acesse a aplicação pelo navegador em:
+```
+http://localhost:8080/GestaoDeGames/
+```
